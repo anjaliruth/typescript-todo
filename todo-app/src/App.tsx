@@ -16,29 +16,50 @@ done: boolean
 }
 function App() {
   const [toDoItems, setToDoItems] = useState<ToDo[]>([])
-  // console.log(toDoItems)
+  const [inputField, setInputField] = useState<string>("")
 
   function addToList(inputField: string) {
     setToDoItems([...toDoItems, { id: uuidv4(), task: inputField, done: false}])
   }
 
+  function editToDo(id: string) {
+    // put task as value of input
+    toDoItems.find((toDoItem) => {
+      if (toDoItem.id === id) {
+        setInputField(toDoItem.task)
+      }
+      return toDoItem
+    }
+    )
+    // remove todo from toDoItems array
+    deleteFromList(id)
+  }
 
-  function markAsDone(id: string){
+  function deleteFromList(id: string) {
+    const filteredToDoList = toDoItems.filter((toDoItem) => 
+      toDoItem.id !== id
+    )
+    setToDoItems(filteredToDoList)
+  }
+
+
+  function toggleDone(id: string){
     const updatedToDoList = toDoItems.map((toDoItem)=> {
       if (toDoItem.id === id) {
-        return {...toDoItem, done: true}
+        return {...toDoItem, done: !toDoItem.done}
       }
       return toDoItem
   })
     setToDoItems(updatedToDoList)
   }
+
   return (
     <>
       <div className=""> 
         <Header/>
-        <InputArea addToList={addToList}/>
-        <ToDoListContainer toDoItems={toDoItems} markAsDone={markAsDone}/>
-        <Footer />
+        <InputArea addToList={addToList} inputField={inputField} setInputField={setInputField}/>
+        <ToDoListContainer toDoItems={toDoItems} toggleDone={toggleDone} deleteFromList={deleteFromList} editToDo={editToDo}/>
+        <Footer/>
       </div>
     </>
   );

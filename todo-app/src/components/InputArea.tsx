@@ -2,10 +2,12 @@ import { useState } from 'react'
 
 type inputAreaProps= {
     addToList: (inputField:string) => void
+    inputField: string
+    setInputField: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function InputArea({addToList}:inputAreaProps) {
-const [inputField, setInputField] = useState("")
+export default function InputArea({addToList, inputField, setInputField}:inputAreaProps) {
+
 
 function onSubmitToDo(){
     if (!inputField) {
