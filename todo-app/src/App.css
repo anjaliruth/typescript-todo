@@ -1,0 +1,10 @@
+.todo-item{
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.todo-item-buttons{
+  display: flex;
+  gap: 5px;
+}
