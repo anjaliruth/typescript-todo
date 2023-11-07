@@ -8,6 +8,7 @@ import InputArea from "./components/InputArea";
 import ToDoListContainer from './components/ToDoListContainer';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import {DragDropContext} from "react-beautiful-dnd"
 
 export type ToDo = {
   id: string,
@@ -54,14 +55,15 @@ function App() {
   }
 
   return (
-    <>
+    
+    <DragDropContext onDragEnd={()=>{}}>
       <div className=""> 
         <Header/>
         <InputArea addToList={addToList} inputField={inputField} setInputField={setInputField}/>
         <ToDoListContainer toDoItems={toDoItems} toggleDone={toggleDone} deleteFromList={deleteFromList} editToDo={editToDo}/>
         <Footer/>
       </div>
-    </>
+    </DragDropContext>
   );
 }
 

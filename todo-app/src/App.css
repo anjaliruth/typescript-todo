@@ -8,3 +8,15 @@
   display: flex;
   gap: 5px;
 }
+
+.todo-area{
+  background-color: brown;
+}
+
+.todo-container-undone{
+  background-color: greenyellow;
+}
+
+.todo-container-done{
+  background-color: blueviolet;
+}
