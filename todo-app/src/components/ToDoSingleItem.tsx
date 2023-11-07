@@ -17,11 +17,13 @@ export default function ToDoSingleItem({ toDo, index, toggleDone, deleteFromList
         <Draggable draggableId={toDo.id} index={index}>
           {(provided)=> (
  <div key={toDo.id} className="todo-item" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+  <div className="checkbox-and-task">
  {toDo.done ? 
  <input type="checkbox" onChange={()=> toggleDone(toDo.id)} checked/> :
  <input type="checkbox" onChange={()=> toggleDone(toDo.id)}/>
  }
- <p>{toDo.task}</p>
+ <p className="task">{toDo.task}</p>
+ </div>
  <div className="todo-item-buttons">
    <button onClick={() => editToDo(toDo.id)}>Edit</button>
    <button onClick={() => deleteFromList(toDo.id)}>Delete</button>

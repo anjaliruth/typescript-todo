@@ -18,7 +18,7 @@ function onSubmitToDo(){
     setInputField("")
 }
   return (
-    <div>
+    <div className="input-area">
    <input value={inputField} placeholder="add to-do..." type="text" onChange={(e)=> setInputField(e.target.value)}/>
    <button onClick={()=>onSubmitToDo()} type="submit">Submit</button>
     </div>

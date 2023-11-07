@@ -83,7 +83,7 @@ function App() {
   return (
     
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className=""> 
+      <div className="app"> 
         <Header/>
         <InputArea addToList={addToList} inputField={inputField} setInputField={setInputField}/>
         <ToDoListContainer unDoneTasks={unDoneTasks} doneTasks={doneTasks} toggleDone={toggleDone} deleteFromList={deleteFromList} editToDo={editToDo}/>
