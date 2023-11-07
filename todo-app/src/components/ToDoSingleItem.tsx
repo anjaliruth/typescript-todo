@@ -1,8 +1,8 @@
-
-// import ToDoItem from './ToDoItem'
-
 import { Draggable } from "react-beautiful-dnd";
 import { ToDo } from "../App";
+import binPhoto from '../assets/icons8-bin-69.png'
+import pencilPhoto from '../assets/icons8-edit-69.png'
+
 export type ToDoSingleItemProps = {
   toDo: ToDo;
   index: number;
@@ -25,8 +25,8 @@ export default function ToDoSingleItem({ toDo, index, toggleDone, deleteFromList
  <p className="task">{toDo.task}</p>
  </div>
  <div className="todo-item-buttons">
-   <button onClick={() => editToDo(toDo.id)}>Edit</button>
-   <button onClick={() => deleteFromList(toDo.id)}>Delete</button>
+   <button onClick={() => editToDo(toDo.id)}><img className="edit button" src={pencilPhoto}/></button>
+   <button onClick={() => deleteFromList(toDo.id)}><img className="delete button" src={binPhoto}/></button>
  </div>
 </div>
           )}

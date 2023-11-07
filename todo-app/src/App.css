@@ -1,9 +1,21 @@
 .app{
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+
+}
+.input-area{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 8%;
+  width: 90vw;
+  }
+
+.input-field {
+  width: 70%;
+  border-radius: 5px;
+  border: 0.5px solid black;
 }
 
 .task-container{
@@ -18,9 +30,7 @@
 .checkbox-and-task{
   display: flex;
 }
-.input-area{
-margin-top: 8%;
-}
+
 .task-section-title{
   text-align: center;
   margin: 2%;
@@ -41,6 +51,12 @@ margin-top: 8%;
   border: 1px solid black;
  /* color: white; */
 }
+
+.todo-item:hover{
+transform: scale(1.05);
+box-shadow: 0 0 5px black;
+}
+
 .todo-list{
   display: flex;
   flex-direction: column;
@@ -72,11 +88,39 @@ border: 2px solid black
   background-color: #ffff8f;
 }
 
-
-
 .task{
   margin: 12px;
 }
+
+.button {
+  height: 20px;
+}
+
+
+.footer {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.name-and-icon {
+  display: flex;
+  width: 45%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.name-and-icon > p {
+  margin: 0;
+}
+
+.contact-icon {
+  max-height: 35px;
+  max-width: 35px;
+}
+
+/* Media Queries */
 @media (min-width: 576px){
   
   .task-container{

@@ -1,4 +1,4 @@
-
+import tickIcon from '../assets/icons8-tick-69.png'
 
 type inputAreaProps= {
     addToList: (inputField:string) => void
@@ -19,8 +19,8 @@ function onSubmitToDo(){
 }
   return (
     <div className="input-area">
-   <input value={inputField} placeholder="add to-do..." type="text" onChange={(e)=> setInputField(e.target.value)}/>
-   <button onClick={()=>onSubmitToDo()} type="submit">Submit</button>
+   <input className="input-field" value={inputField} placeholder="add to-do..." type="text" onChange={(e)=> setInputField(e.target.value)}/>
+   <button onClick={()=>onSubmitToDo()} type="submit"><img className="submit button" src={tickIcon}/></button>
     </div>
   )
 }
