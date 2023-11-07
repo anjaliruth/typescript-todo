@@ -4,23 +4,24 @@ import { ToDo } from "../App";
 import { Droppable } from "react-beautiful-dnd";
 
 export type ToDoListContainerProps = {
-  toDoItems: ToDo[];
   toggleDone: (inputField: string) => void;
   deleteFromList: (id: string) => void;
   editToDo: (id: string) => void;
+  unDoneTasks: ToDo[],
+  doneTasks: ToDo[]
 };
 
 export default function ToDoListContainer({
-  toDoItems,
   toggleDone,
   deleteFromList,
   editToDo,
+  unDoneTasks,
+  doneTasks
 }: ToDoListContainerProps) {
-  const unDoneTasks = toDoItems.filter((toDo) => !toDo.done);
-  const doneTasks = toDoItems.filter((toDo) => toDo.done);
+
   return (
     <>
-      <Droppable droppableId="to-do-container-undone">
+      <Droppable droppableId="todo-container-undone">
         {(provided) => (
           <div
             className="todo-container-undone"
@@ -30,6 +31,7 @@ export default function ToDoListContainer({
             <h1>To Do List</h1>
             {unDoneTasks.map((toDo, i) => (
               <ToDoSingleItem
+                key={toDo.id}
                 toDo={toDo}
                 toggleDone={toggleDone}
                 deleteFromList={deleteFromList}
@@ -37,11 +39,12 @@ export default function ToDoListContainer({
                 index={i}
               />
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
 
-      <Droppable droppableId="to-do-container-done">
+      <Droppable droppableId="todo-container-done">
         {(provided) => (
           <div
             className="todo-container-done"
@@ -51,6 +54,7 @@ export default function ToDoListContainer({
             <h1>Done!</h1>
             {doneTasks.map((toDo, i) => (
               <ToDoSingleItem
+                key={toDo.id}
                 toDo={toDo}
                 toggleDone={toggleDone}
                 deleteFromList={deleteFromList}
@@ -58,6 +62,7 @@ export default function ToDoListContainer({
                 index={i}
               />
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
