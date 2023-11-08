@@ -64,8 +64,8 @@ function App() {
     )
       return;
 
-    let add,
-      active = unDoneTasks,
+    let add;
+    const active = unDoneTasks,
       complete = doneTasks;
 
     if (source.droppableId === "todo-container-undone") {
@@ -88,18 +88,20 @@ function App() {
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="app">
         <Header />
-        <InputArea
-          addToList={addToList}
-          inputField={inputField}
-          setInputField={setInputField}
-        />
-        <ToDoListContainer
-          unDoneTasks={unDoneTasks}
-          doneTasks={doneTasks}
-          toggleDone={toggleDone}
-          deleteFromList={deleteFromList}
-          editToDo={editToDo}
-        />
+        <div className="main-area">
+          <InputArea
+            addToList={addToList}
+            inputField={inputField}
+            setInputField={setInputField}
+          />
+          <ToDoListContainer
+            unDoneTasks={unDoneTasks}
+            doneTasks={doneTasks}
+            toggleDone={toggleDone}
+            deleteFromList={deleteFromList}
+            editToDo={editToDo}
+          />
+        </div>
         <Footer />
       </div>
     </DragDropContext>

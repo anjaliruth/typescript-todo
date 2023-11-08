@@ -30,15 +30,20 @@ export default function ToDoSingleItem({
         >
           <div className="checkbox-and-task">
             {toDo.done ? (
-              <input
-                type="checkbox"
-                onChange={() => toggleDone(toDo.id)}
-                checked
-              />
+              <div className="checkbox-container">
+                <input
+                  type="checkbox"
+                  onChange={() => toggleDone(toDo.id)}
+                  checked
+                />
+                <p className="task-done">{toDo.task}</p>
+              </div>
             ) : (
-              <input type="checkbox" onChange={() => toggleDone(toDo.id)} />
+              <div className="checkbox-container">
+                <input type="checkbox" onChange={() => toggleDone(toDo.id)} />
+                <p className="task">{toDo.task}</p>
+              </div>
             )}
-            <p className="task">{toDo.task}</p>
           </div>
           <div className="todo-item-buttons">
             <button onClick={() => editToDo(toDo.id)}>
