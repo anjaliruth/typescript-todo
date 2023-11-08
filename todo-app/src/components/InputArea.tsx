@@ -1,4 +1,4 @@
-import tickIcon from "../assets/icons8-tick-69.png";
+import tickPhoto from "../assets/icons8-tick-69.png";
 
 type inputAreaProps = {
   addToList: (inputField: string) => void;
@@ -11,26 +11,33 @@ export default function InputArea({
   inputField,
   setInputField,
 }: inputAreaProps) {
-  function onSubmitToDo() {
+  function onSubmitToDo(e: any) {
+    e.preventDefault();
     if (!inputField) {
       return;
     }
-
     addToList(inputField);
     setInputField("");
   }
   return (
     <div className="input-area">
-      <input
-        className="input-field"
-        value={inputField}
-        placeholder="add to-do..."
-        type="text"
-        onChange={(e) => setInputField(e.target.value)}
-      />
-      <button onClick={() => onSubmitToDo()} type="submit">
-        <img className="submit button" src={tickIcon} />
-      </button>
+      <form
+        id="input-area"
+        className="input-area"
+        onSubmit={(e) => onSubmitToDo(e)}
+      >
+        <input
+          id="input-field"
+          className="input-field"
+          value={inputField}
+          placeholder="add to-do..."
+          type="text"
+          onChange={(e) => setInputField(e.target.value)}
+        />
+        <button id="input-button">
+          <img className="submit button" src={tickPhoto} />
+        </button>
+      </form>
     </div>
   );
 }

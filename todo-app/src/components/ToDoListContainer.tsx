@@ -7,16 +7,24 @@ export type ToDoListContainerProps = {
   toggleDone: (inputField: string) => void;
   deleteFromList: (id: string) => void;
   editToDo: (id: string) => void;
+  addToList: (inputField: string) => void;
   unDoneTasks: ToDo[];
   doneTasks: ToDo[];
+  edit: boolean;
+  inputField: string;
+  setInputField: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function ToDoListContainer({
   toggleDone,
   deleteFromList,
   editToDo,
+  addToList,
   unDoneTasks,
   doneTasks,
+  edit,
+  inputField,
+  setInputField,
 }: ToDoListContainerProps) {
   return (
     <div className="task-container">
@@ -36,7 +44,11 @@ export default function ToDoListContainer({
                   toggleDone={toggleDone}
                   deleteFromList={deleteFromList}
                   editToDo={editToDo}
+                  addToList={addToList}
                   index={i}
+                  edit={edit}
+                  inputField={inputField}
+                  setInputField={setInputField}
                 />
               ))}
               {provided.placeholder}
@@ -61,7 +73,11 @@ export default function ToDoListContainer({
                   toggleDone={toggleDone}
                   deleteFromList={deleteFromList}
                   editToDo={editToDo}
+                  addToList={addToList}
                   index={i}
+                  edit={edit}
+                  inputField={inputField}
+                  setInputField={setInputField}
                 />
               ))}
 
