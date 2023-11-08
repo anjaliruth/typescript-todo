@@ -6,25 +6,22 @@ import { Droppable } from "react-beautiful-dnd";
 export type ToDoListContainerProps = {
   toggleDone: (inputField: string) => void;
   deleteFromList: (id: string) => void;
-  editToDo: (id: string) => void;
   addToList: (inputField: string) => void;
   unDoneTasks: ToDo[];
   doneTasks: ToDo[];
-  edit: boolean;
-  inputField: string;
-  setInputField: React.Dispatch<React.SetStateAction<string>>;
+  setToDoItems: React.Dispatch<React.SetStateAction<ToDo[]>>;
+  toDoItems: ToDo[]
 };
 
 export default function ToDoListContainer({
   toggleDone,
   deleteFromList,
-  editToDo,
   addToList,
   unDoneTasks,
   doneTasks,
-  edit,
-  inputField,
-  setInputField,
+
+  setToDoItems,
+  toDoItems
 }: ToDoListContainerProps) {
   return (
     <div className="task-container">
@@ -43,12 +40,10 @@ export default function ToDoListContainer({
                   toDo={toDo}
                   toggleDone={toggleDone}
                   deleteFromList={deleteFromList}
-                  editToDo={editToDo}
+                  setToDoItems={setToDoItems}
+                  toDoItems={toDoItems}
                   addToList={addToList}
                   index={i}
-                  edit={edit}
-                  inputField={inputField}
-                  setInputField={setInputField}
                 />
               ))}
               {provided.placeholder}
@@ -72,12 +67,10 @@ export default function ToDoListContainer({
                   toDo={toDo}
                   toggleDone={toggleDone}
                   deleteFromList={deleteFromList}
-                  editToDo={editToDo}
+                  setToDoItems={setToDoItems}
+                  toDoItems={toDoItems}
                   addToList={addToList}
                   index={i}
-                  edit={edit}
-                  inputField={inputField}
-                  setInputField={setInputField}
                 />
               ))}
 

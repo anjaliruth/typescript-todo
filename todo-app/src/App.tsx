@@ -17,7 +17,7 @@ export type ToDo = {
 function App() {
   const [toDoItems, setToDoItems] = useState<ToDo[]>([]);
   const [inputField, setInputField] = useState<string>("");
-  const [edit, setEdit] = useState<boolean>(false);
+
   const unDoneTasks = toDoItems.filter((toDo) => !toDo.done);
   const doneTasks = toDoItems.filter((toDo) => toDo.done);
 
@@ -26,24 +26,15 @@ function App() {
       ...toDoItems,
       { id: uuidv4(), task: inputField, done: false },
     ]);
-    setEdit(false);
-  }
-
-  function editToDo(id: string) {
-    // put task as value of input
-    const toDoToEdit = toDoItems.find((toDoItem) => toDoItem.id === id);
-    console.log(id, "id of chosen todo");
-    if (toDoToEdit) {
-      setEdit(!edit);
-    }
-    // remove todo from toDoItems array
-    // deleteFromList(id);
-    return toDoToEdit;
   }
 
   function deleteFromList(id: string) {
-    const filteredToDoList = toDoItems.filter((toDoItem) => toDoItem.id !== id);
-    setToDoItems(filteredToDoList);
+    if (window.confirm("Do you want to delete this task?")) {
+      const filteredToDoList = toDoItems.filter(
+        (toDoItem) => toDoItem.id !== id
+      );
+      setToDoItems(filteredToDoList);
+    }
   }
 
   function toggleDone(id: string) {
@@ -101,11 +92,9 @@ function App() {
             doneTasks={doneTasks}
             toggleDone={toggleDone}
             deleteFromList={deleteFromList}
-            editToDo={editToDo}
             addToList={addToList}
-            edit={edit}
-            inputField={inputField}
-            setInputField={setInputField}
+            setToDoItems={setToDoItems}
+            toDoItems={toDoItems}
           />
         </div>
         <Footer />

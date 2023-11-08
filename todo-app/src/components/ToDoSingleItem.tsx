@@ -1,4 +1,5 @@
 import { Draggable } from "react-beautiful-dnd";
+import { useState } from "react";
 import { ToDo } from "../App";
 import binPhoto from "../assets/icons8-bin-69.png";
 import pencilPhoto from "../assets/icons8-edit-69.png";
@@ -9,11 +10,9 @@ export type ToDoSingleItemProps = {
   index: number;
   toggleDone: (inputField: string) => void;
   deleteFromList: (id: string) => void;
-  editToDo: (id: string) => void;
   addToList: (inputField: string) => void;
-  edit: boolean;
-  inputField: string;
-  setInputField: React.Dispatch<React.SetStateAction<string>>;
+  setToDoItems: React.Dispatch<React.SetStateAction<ToDo[]>>;
+  toDoItems: ToDo[];
 };
 
 export default function ToDoSingleItem({
@@ -21,12 +20,27 @@ export default function ToDoSingleItem({
   index,
   toggleDone,
   deleteFromList,
-  editToDo,
-  addToList,
-  edit,
-  inputField,
-  setInputField,
+  setToDoItems,
+  toDoItems,
 }: ToDoSingleItemProps) {
+  const [editTodo, setEditTodo] = useState(toDo.task);
+  const [edit, setEdit] = useState<boolean>(false);
+
+  function handleEdit(e: React.FormEvent, id: string) {
+    e.preventDefault();
+    console.log("im editing");
+    console.log(edit);
+    setToDoItems(
+      toDoItems.map((toDoItem) =>
+        toDoItem.id === id
+          ? { ...toDoItem, task: editTodo, done: false }
+          : toDoItem
+      )
+    );
+    setEdit(false);
+  }
+
+  console.log(edit);
   return (
     <Draggable draggableId={toDo.id} index={index}>
       {(provided) => (
@@ -45,66 +59,56 @@ export default function ToDoSingleItem({
                   onChange={() => toggleDone(toDo.id)}
                   checked
                 />
-                {edit ? (
-                  <>
-                    <input
-                      onChange={(e) => setInputField(e.target.value)}
-                      defaultValue={toDo.task}
-                    />
+                <form onSubmit={(e) => handleEdit(e, toDo.id)}>
+          
+                    <s>{toDo.task}</s>
                     <div className="todo-item-buttons">
-                      <button onClick={() => addToList(inputField)}>
-                        <img className="submit button" src={tickPhoto} />
-                      </button>
                       <button onClick={() => deleteFromList(toDo.id)}>
                         <img className="delete button" src={binPhoto} />
                       </button>
                     </div>
-                  </>
-                ) : (
-                  <>
-                    <p className="task-done">{toDo.task}</p>
-                    <div className="todo-item-buttons">
-                      <button onClick={() => editToDo(toDo.id)}>
-                        <img className="edit button" src={pencilPhoto} />
-                      </button>
-                      <button onClick={() => deleteFromList(toDo.id)}>
-                        <img className="delete button" src={binPhoto} />
-                      </button>
-                    </div>
-                  </>
-                )}
+                </form>
               </div>
             ) : (
               <div className="checkbox-container">
                 <input type="checkbox" onChange={() => toggleDone(toDo.id)} />
-                {edit ? (
-                  <>
-                    <input
-                      onChange={(e) => setInputField(e.target.value)}
-                      defaultValue={toDo.task}
-                    />
-                    <div className="todo-item-buttons">
-                      <button onClick={() => addToList(inputField)}>
-                        <img className="submit button" src={tickPhoto} />
-                      </button>
-                      <button onClick={() => deleteFromList(toDo.id)}>
-                        <img className="delete button" src={binPhoto} />
-                      </button>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <p className="task">{toDo.task}</p>
-                    <div className="todo-item-buttons">
-                      <button onClick={() => editToDo(toDo.id)}>
-                        <img className="edit button" src={pencilPhoto} />
-                      </button>
-                      <button onClick={() => deleteFromList(toDo.id)}>
-                        <img className="delete button" src={binPhoto} />
-                      </button>
-                    </div>
-                  </>
-                )}
+                <form onSubmit={(e) => handleEdit(e, toDo.id)}>
+                  {edit ? (
+                    <>
+                      <input
+                        onChange={(e) => setEditTodo(e.target.value)}
+                        value={editTodo}
+                      />
+                      <div className="todo-item-buttons">
+                        <button>
+                          <img className="submit button" src={tickPhoto} />
+                        </button>
+                        <button onClick={() => deleteFromList(toDo.id)}>
+                          <img className="delete button" src={binPhoto} />
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p className="task">{toDo.task}</p>
+                      <div className="todo-item-buttons">
+                        <button
+                          onClick={(e) => {
+                            if (!edit && !toDo.done) {
+                              e.preventDefault();
+                              setEdit(true);
+                            }
+                          }}
+                        >
+                          <img className="edit button" src={pencilPhoto} />
+                        </button>
+                        <button onClick={() => deleteFromList(toDo.id)}>
+                          <img className="delete button" src={binPhoto} />
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </form>
               </div>
             )}
           </div>
