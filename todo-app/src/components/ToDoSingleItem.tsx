@@ -59,55 +59,57 @@ export default function ToDoSingleItem({
                   onChange={() => toggleDone(toDo.id)}
                   checked
                 />
-                <form onSubmit={(e) => handleEdit(e, toDo.id)}>
-          
-                    <s>{toDo.task}</s>
-                    <div className="todo-item-buttons">
-                      <button onClick={() => deleteFromList(toDo.id)}>
-                        <img className="delete button" src={binPhoto} />
-                      </button>
-                    </div>
-                </form>
+                <s>{toDo.task}</s>
+                <div className="todo-item-buttons">
+                  <button onClick={() => deleteFromList(toDo.id)}>
+                    <img className="delete button" src={binPhoto} />
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="checkbox-container">
                 <input type="checkbox" onChange={() => toggleDone(toDo.id)} />
-                <form onSubmit={(e) => handleEdit(e, toDo.id)}>
-                  {edit ? (
-                    <>
-                      <input
-                        onChange={(e) => setEditTodo(e.target.value)}
-                        value={editTodo}
-                      />
-                      <div className="todo-item-buttons">
-                        <button>
-                          <img className="submit button" src={tickPhoto} />
-                        </button>
-                        <button onClick={() => deleteFromList(toDo.id)}>
-                          <img className="delete button" src={binPhoto} />
-                        </button>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <p className="task">{toDo.task}</p>
-                      <div className="todo-item-buttons">
-                        <button
-                          onClick={(e) => {
-                            if (!edit && !toDo.done) {
-                              e.preventDefault();
-                              setEdit(true);
-                            }
-                          }}
-                        >
-                          <img className="edit button" src={pencilPhoto} />
-                        </button>
-                        <button onClick={() => deleteFromList(toDo.id)}>
-                          <img className="delete button" src={binPhoto} />
-                        </button>
-                      </div>
-                    </>
-                  )}
+                <form
+                  className="edit-todo-form"
+                  onSubmit={(e) => handleEdit(e, toDo.id)}
+                >
+                  <div className="edit-todo">
+                    {edit ? (
+                      <>
+                        <input
+                          onChange={(e) => setEditTodo(e.target.value)}
+                          value={editTodo}
+                        />
+                        <div className="todo-item-buttons">
+                          <button>
+                            <img className="submit button" src={tickPhoto} />
+                          </button>
+                          <button onClick={() => deleteFromList(toDo.id)}>
+                            <img className="delete button" src={binPhoto} />
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <p className="task">{toDo.task}</p>
+                        <div className="todo-item-buttons">
+                          <button
+                            onClick={(e) => {
+                              if (!edit && !toDo.done) {
+                                e.preventDefault();
+                                setEdit(true);
+                              }
+                            }}
+                          >
+                            <img className="edit button" src={pencilPhoto} />
+                          </button>
+                          <button onClick={() => deleteFromList(toDo.id)}>
+                            <img className="delete button" src={binPhoto} />
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </form>
               </div>
             )}

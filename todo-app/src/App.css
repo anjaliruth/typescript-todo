@@ -18,7 +18,7 @@
   flex-grow: 0;
   flex-shrink: 0;
 }
-.input-area {
+.input-area, .edit-todo-form {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -58,10 +58,9 @@
   justify-self: flex-start;
 }
 .todo-item {
-  background-color: #1b1725;
   background-color: #3de1b2;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   gap: 10px;
   width: 80%;
@@ -151,6 +150,13 @@
 
 .checkbox-container {
   display: flex;
+}
+
+.edit-todo {
+  display: flex;
+  background-color: #ccccff;
+  /* min-width: 100%; */
+  align-items: center;
 }
 
 /* Media Queries */
