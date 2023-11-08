@@ -1,16 +1,15 @@
-.app{
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
-.input-area{
+.input-area {
   display: flex;
   justify-content: space-around;
   margin-top: 8%;
   width: 90vw;
-  }
+}
 
 .input-field {
   width: 70%;
@@ -18,28 +17,28 @@
   border: 0.5px solid black;
 }
 
-.task-container{
+.task-container {
   display: flex;
   flex-direction: column;
   /* background-color: blanchedalmond; */
-  gap:10px;
+  gap: 10px;
   width: 90vw;
   margin: 8%;
 }
 
-.checkbox-and-task{
+.checkbox-and-task {
   display: flex;
 }
 
-.task-section-title{
+.task-section-title {
   text-align: center;
   margin: 2%;
   margin-top: 0;
   justify-self: flex-start;
 }
-.todo-item{
-  background-color: #1B1725;
-  background-color: #3DE1B2;
+.todo-item {
+  background-color: #1b1725;
+  background-color: #3de1b2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,53 +48,52 @@
   border-radius: 8px;
   padding: 0 5px;
   border: 1px solid black;
- /* color: white; */
+  /* color: white; */
 }
 
-.todo-item:hover{
-transform: scale(1.05);
-box-shadow: 0 0 5px black;
+.todo-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 5px black;
 }
 
-.todo-list{
+.todo-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.todo-item-buttons{
+.todo-item-buttons {
   display: flex;
   gap: 5px;
 }
 
-.todo-area{
+.todo-area {
   background-color: brown;
 }
 
-.todo-container{
+.todo-container {
   display: flex;
   flex-direction: column;
   padding: 2%;
-border-radius: 5px;
-border: 2px solid black
+  border-radius: 5px;
+  border: 2px solid black;
 }
 
-.done{
+.done {
   /* background-color: #fcbd81; */
   background-color: #ccccff;
 }
-.undone{
+.undone {
   background-color: #ffff8f;
 }
 
-.task{
+.task {
   margin: 12px;
 }
 
 .button {
   height: 20px;
 }
-
 
 .footer {
   display: flex;
@@ -121,13 +119,12 @@ border: 2px solid black
 }
 
 /* Media Queries */
-@media (min-width: 576px){
-  
-  .task-container{
+@media (min-width: 576px) {
+  .task-container {
     flex-direction: row;
     justify-content: space-between;
   }
-.todo-container{
-  width: 45%;
-}
+  .todo-container {
+    width: 45%;
+  }
 }
