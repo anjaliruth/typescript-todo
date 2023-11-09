@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import { v4 as uuidv4 } from "uuid";
@@ -17,15 +17,27 @@ export type ToDo = {
 function App() {
   const [toDoItems, setToDoItems] = useState<ToDo[]>([]);
   const [inputField, setInputField] = useState<string>("");
-
   const unDoneTasks = toDoItems.filter((toDo) => !toDo.done);
   const doneTasks = toDoItems.filter((toDo) => toDo.done);
+  useEffect(() => {
+ const storedTasks = JSON.parse(localStorage.getItem("tasks") || "");
+    if (storedTasks) {
+      try {
+        setToDoItems(storedTasks);
+       
+      } catch (error) {
+        console.error("Error parsing tasks from local storage");
+      }
+    }
+  }, []);
 
   function addToList(inputField: string) {
-    setToDoItems([
+    const newToDoItems =[
       ...toDoItems,
       { id: uuidv4(), task: inputField, done: false },
-    ]);
+    ];
+    setToDoItems(newToDoItems)
+    localStorage.setItem("tasks", JSON.stringify(newToDoItems));
   }
 
   function deleteFromList(id: string) {
@@ -34,6 +46,7 @@ function App() {
         (toDoItem) => toDoItem.id !== id
       );
       setToDoItems(filteredToDoList);
+      localStorage.setItem("tasks", JSON.stringify(filteredToDoList));
     }
   }
 
@@ -45,6 +58,7 @@ function App() {
       return toDoItem;
     });
     setToDoItems(updatedToDoList);
+    localStorage.setItem("tasks", JSON.stringify(updatedToDoList))
   }
 
   const onDragEnd = (result: DropResult) => {

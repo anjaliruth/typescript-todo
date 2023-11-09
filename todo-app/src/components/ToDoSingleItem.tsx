@@ -28,19 +28,19 @@ export default function ToDoSingleItem({
 
   function handleEdit(e: React.FormEvent, id: string) {
     e.preventDefault();
-    console.log("im editing");
-    console.log(edit);
-    setToDoItems(
-      toDoItems.map((toDoItem) =>
+
+     const newToDoItems =  toDoItems.map((toDoItem) =>
         toDoItem.id === id
           ? { ...toDoItem, task: editTodo, done: false }
           : toDoItem
       )
-    );
+      setToDoItems(newToDoItems)
+      localStorage.setItem("tasks", JSON.stringify(newToDoItems))
     setEdit(false);
+
   }
 
-  console.log(edit);
+ 
   return (
     <Draggable draggableId={toDo.id} index={index}>
       {(provided) => (
