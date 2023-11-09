@@ -34,7 +34,7 @@ export default function InputArea({
           type="text"
           onChange={(e) => setInputField(e.target.value)}
         />
-        <button id="input-button">
+        <button id="input-button" className="todo-button">
           <img className="submit button" src={tickPhoto} />
         </button>
       </form>

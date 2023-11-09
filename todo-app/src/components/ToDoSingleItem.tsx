@@ -51,69 +51,84 @@ export default function ToDoSingleItem({
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <div className="checkbox-and-task">
-            {toDo.done ? (
+          {toDo.done ? (
+            <div className="todo-item-done">
               <div className="checkbox-container">
                 <input
                   type="checkbox"
                   onChange={() => toggleDone(toDo.id)}
                   checked
                 />
+              </div>
+              <div className="done-task-and-buttons">
                 <s>{toDo.task}</s>
                 <div className="todo-item-buttons">
-                  <button onClick={() => deleteFromList(toDo.id)}>
+                  <button
+                    className="todo-button"
+                    onClick={() => deleteFromList(toDo.id)}
+                  >
                     <img className="delete button" src={binPhoto} />
                   </button>
                 </div>
               </div>
-            ) : (
+            </div>
+          ) : (
+            <>
               <div className="checkbox-container">
                 <input type="checkbox" onChange={() => toggleDone(toDo.id)} />
+              </div>
+              <div className="edit-todo">
                 <form
                   className="edit-todo-form"
                   onSubmit={(e) => handleEdit(e, toDo.id)}
                 >
-                  <div className="edit-todo">
-                    {edit ? (
-                      <>
-                        <input
-                          onChange={(e) => setEditTodo(e.target.value)}
-                          value={editTodo}
-                        />
-                        <div className="todo-item-buttons">
-                          <button>
-                            <img className="submit button" src={tickPhoto} />
-                          </button>
-                          <button onClick={() => deleteFromList(toDo.id)}>
-                            <img className="delete button" src={binPhoto} />
-                          </button>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <p className="task">{toDo.task}</p>
-                        <div className="todo-item-buttons">
-                          <button
-                            onClick={(e) => {
-                              if (!edit && !toDo.done) {
-                                e.preventDefault();
-                                setEdit(true);
-                              }
-                            }}
-                          >
-                            <img className="edit button" src={pencilPhoto} />
-                          </button>
-                          <button onClick={() => deleteFromList(toDo.id)}>
-                            <img className="delete button" src={binPhoto} />
-                          </button>
-                        </div>
-                      </>
-                    )}
-                  </div>
+                  {edit ? (
+                    <>
+                      <input
+                        className="edit-input"
+                        onChange={(e) => setEditTodo(e.target.value)}
+                        value={editTodo}
+                      />
+                      <div className="todo-item-buttons">
+                        <button className="todo-button">
+                          <img className="submit button" src={tickPhoto} />
+                        </button>
+                        <button
+                          className="todo-button"
+                          onClick={() => deleteFromList(toDo.id)}
+                        >
+                          <img className="delete button" src={binPhoto} />
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p className="task">{toDo.task}</p>
+                      <div className="todo-item-buttons">
+                        <button
+                          className="todo-button"
+                          onClick={(e) => {
+                            if (!edit && !toDo.done) {
+                              e.preventDefault();
+                              setEdit(true);
+                            }
+                          }}
+                        >
+                          <img className="edit button" src={pencilPhoto} />
+                        </button>
+                        <button
+                          className="todo-button"
+                          onClick={() => deleteFromList(toDo.id)}
+                        >
+                          <img className="delete button" src={binPhoto} />
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </form>
               </div>
-            )}
-          </div>
+            </>
+          )}
         </div>
       )}
     </Draggable>
