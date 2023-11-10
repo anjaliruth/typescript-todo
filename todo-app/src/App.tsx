@@ -19,17 +19,20 @@ function App() {
   const [inputField, setInputField] = useState<string>("");
   const unDoneTasks = toDoItems.filter((toDo) => !toDo.done);
   const doneTasks = toDoItems.filter((toDo) => toDo.done);
+
   useEffect(() => {
- const storedTasks = JSON.parse(localStorage.getItem("tasks") || "");
-    if (storedTasks) {
+    const storedTasksString = localStorage.getItem("tasks");
+    if (storedTasksString) {
       try {
+        const storedTasks = JSON.parse(storedTasksString);
         setToDoItems(storedTasks);
-       
       } catch (error) {
-        console.error("Error parsing tasks from local storage");
+        console.error("Error parsing tasks from local storage:", error);
+        // Handle the error or set a default value if needed
       }
     }
   }, []);
+  
 
   function addToList(inputField: string) {
     const newToDoItems =[
