@@ -10,12 +10,14 @@ export default function Footer() {
           <SocialIcon
             className="contact-icon"
             url="https://github.com/CGreen789"
+            target="_blank"
           />
         </div>
         <div className="name-and-icon">
           <SocialIcon
             className="contact-icon"
             url="https://github.com/anjaliruth"
+            target="_blank"
           />
           <p>Anjali</p>
         </div>
